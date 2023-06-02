@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ${spring.application.name}
+  name: ${spring.application.name}
+spec:
+  replicas: ${deployment.replicas}
+  selector:
+    matchLabels:
+      app: ${spring.application.name}
+  template:
+    metadata:
+      labels:
+        app: ${spring.application.name}
+        api-key-secured: ${api.key.secured}
+      annotations:
+        timestamp: ${timestamp}
+    spec:
+      serviceAccountName: default
+      containers:
+        - name: ${spring.application.name}
+          image: "gcr.io/${project.id-gke}/${project.artifactId}:${git.commit.id.describe.withoutdirty}"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: ${spring.application.port}
+            initialDelaySeconds: 80
+            timeoutSeconds: 2
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: ${spring.application.port}
+            initialDelaySeconds: 40
+            timeoutSeconds: 5
+          env:
+            - name: KUBERNETES_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.namespace
+            - name: EC_COMMON_PARAMETERS
+              valueFrom:
+               configMapKeyRef:
+                 name: ec-common-parameters 
+                 key: common
+            - name: EC_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: ec-token
+                  key: token
+            - name: JAVA_OPTIONS
+              value: "-Djava.security.egd=file:/dev/./urandom -Delastic.apm.service_name=${spring.application.name} $(EC_COMMON_PARAMETERS) $(EC_TOKEN)"
+            - name: SPRING_APPLICATION_NAME
+              value: ${spring.application.name}

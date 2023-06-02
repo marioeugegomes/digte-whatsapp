@@ -1,0 +1,88 @@
+spring:
+  application:
+    name: arquitetura-starter-ugf
+  profiles:
+    active: dev
+  devtools:
+    add-properties: false
+  security:
+    user:
+      name: ${UGF_SRVC_USERNAME}
+      password: ${UGF_SRVC_PASSWORD}
+
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/db_arquietura
+    username: postgres
+    password: root
+    database:
+      driverClassName: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+  aop:
+    proxy-target-class: false
+
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
+    password: 
+
+  mvc:
+    converters:
+      preferred-json-mapper: gson
+
+server:
+  config:
+    branch: develop
+  port: 8106
+
+service:
+  telemedicine:
+    name: doc24
+    name-paciente: doc24
+    secret_key: 6df155652556ecb2ed345ef834f11bfd
+    issuer: unimedfl
+    url-telemedicine: https://tapi.doc24.com.ar/ws/api/v2
+
+    specialty-code:
+      adult: 4
+      child: 3
+
+  interall:
+    name: res
+    authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXNjcmlwdGlvbiI6IlMyIC0gVW5pbWVkIEZsb3JpYW5vcG9saXMiLCJpcCI6IjEyNy4wLjAuMSIsImNvbXBhbnlfaWQiOiI3Ny44NTguNjExLzAwMTUtMDMiLCJpYXQiOjE2Mjg1MzI1MDV9.6X70o17PvRyf6nUiCQuegPcZt_8qvlFtn41kxbUFhf4
+    url-res: https://stagingmres.appinterall.com.br
+    company: 77.858.611/0015-03
+
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,liveness,info,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true

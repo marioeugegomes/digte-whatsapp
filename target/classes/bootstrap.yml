@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: arquitetura-starter-ugf
+  cloud:
+    config:
+      uri: http://joaquina-ugf-server-config
+      label: '@server.config.branch@'

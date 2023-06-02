@@ -1,0 +1,7 @@
+/home/mario/Projects/UNIMED/ugf-arquitetura-poc/src/main/java/com/br/unimedflorianopolis/arquitetura/factory/TopicResponseFactory.java
+/home/mario/Projects/UNIMED/ugf-arquitetura-poc/src/main/java/com/br/unimedflorianopolis/arquitetura/gateway/model/response/TopicErrorResponse.java
+/home/mario/Projects/UNIMED/ugf-arquitetura-poc/src/main/java/com/br/unimedflorianopolis/arquitetura/Application.java
+/home/mario/Projects/UNIMED/ugf-arquitetura-poc/src/main/java/com/br/unimedflorianopolis/arquitetura/gateway/model/response/TopicResponse.java
+/home/mario/Projects/UNIMED/ugf-arquitetura-poc/src/main/java/com/br/unimedflorianopolis/arquitetura/enums/ResponseStatus.java
+/home/mario/Projects/UNIMED/ugf-arquitetura-poc/src/main/java/com/br/unimedflorianopolis/arquitetura/factory/HttpErrorResponseFactory.java
+/home/mario/Projects/UNIMED/ugf-arquitetura-poc/src/main/java/com/br/unimedflorianopolis/arquitetura/gateway/model/response/HttpErrorResponse.java

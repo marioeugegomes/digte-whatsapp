@@ -1,0 +1,37 @@
+- name: ns
+  enricher:
+    includes:
+      - jkube-configmap-file
+      - jkube-container-env-java-options
+      - jkube-controller
+      - jkube-controller-from-configuration
+      - jkube-debug
+      - jkube-dependency
+      - jkube-docker-registry-secret
+      - jkube-git
+      - jkube-healthcheck-docker
+      - jkube-healthcheck-karaf
+      - jkube-healthcheck-spring-boot
+      - jkube-image
+      - jkube-ingress
+      - jkube-metadata
+      - jkube-name
+      - jkube-namespace
+      - jkube-pod-annotations
+      - jkube-portname
+      - jkube-project-label
+      - jkube-prometheus
+      - jkube-remove-build-annotations
+      - jkube-revision-history
+      - jkube-secret-file
+      - jkube-service
+      - jkube-service-discovery
+      - jkube-triggers-annotation
+      - jkube-volume-permission
+  generator:
+    includes:
+      - spring-boot
+  watcher:
+    includes:
+      - spring-boot
+      - docker-image

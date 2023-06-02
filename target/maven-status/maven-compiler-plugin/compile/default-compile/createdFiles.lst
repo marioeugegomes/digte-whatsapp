@@ -1,0 +1,10 @@
+com/br/unimedflorianopolis/arquitetura/factory/HttpErrorResponseFactory.class
+com/br/unimedflorianopolis/arquitetura/gateway/model/response/TopicErrorResponse.class
+com/br/unimedflorianopolis/arquitetura/Application.class
+com/br/unimedflorianopolis/arquitetura/enums/ResponseStatus.class
+com/br/unimedflorianopolis/arquitetura/gateway/model/response/HttpErrorResponse$HttpErrorResponseBuilder.class
+com/br/unimedflorianopolis/arquitetura/gateway/model/response/HttpErrorResponse.class
+com/br/unimedflorianopolis/arquitetura/gateway/model/response/TopicErrorResponse$TopicErrorResponseBuilder.class
+com/br/unimedflorianopolis/arquitetura/gateway/model/response/TopicResponse.class
+com/br/unimedflorianopolis/arquitetura/factory/TopicResponseFactory.class
+com/br/unimedflorianopolis/arquitetura/gateway/model/response/TopicResponse$TopicResponseBuilder.class

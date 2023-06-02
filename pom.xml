@@ -2,51 +2,375 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
+        <artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.arquitetura.ugfarquiteturapoc</groupId>
+
+	<groupId>com.br.unimedflorianopolis.arquitetura</groupId>
 	<artifactId>springbootapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>arquitetura-starter-ugf</name>
 	<description>UGF ARQUITETURA POC</description>
 
 	<properties>
+		<start-class>com.br.unimedflorianopolis.arquitetura.Application</start-class>
 		<java.version>1.8</java.version>
+		<spring-cloud.version>Hoxton.SR4</spring-cloud.version>
+        <jkube.version>1.1.0</jkube.version>
+        <jkube.helm.chart>${project.name}</jkube.helm.chart>
+        <pl.project13.maven.version>4.0.3</pl.project13.maven.version>
+        <org.sonarsource.scanner.maven.version>3.7.0.1746</org.sonarsource.scanner.maven.version>
+        <org.jacoco.version>0.8.5</org.jacoco.version>
+        <org.apache.maven.plugins.version>3.0.0-M4</org.apache.maven.plugins.version>
+        <co.elastic.apm.version>1.38.0</co.elastic.apm.version>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <sonar.coverage.exclusions>
+            **/Application.java,
+            **/config/*.java,
+            **/dto/*.java,
+            **/vo/*.java,
+            **/kafka/*.java,
+            **/factory/*.java,
+            **/model/*.java,
+            **/model/request/*.java,
+            **/model/response/*.java,
+            **/model/reply/*.java,
+            **/domain/*.java,
+            **/enums/*.java,
+            **/exception/*.java,
+            **/exception/handler/*.java,
+            **/repository/*.java,
+            **/util/*.java,
+            **/util/constant/*.java,
+            **/helper/*.java,
+            **/mapping/*.java,
+            **/gateway/feign/**/*
+            **/gateway/http/**/*
+        </sonar.coverage.exclusions>
 	</properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+	<profiles>
+        <profile>
+            <id>default</id>
+            <properties>
+                <spring.application.name>${project.name}</spring.application.name>
+                <spring.application.port>8106</spring.application.port>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
 
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
+	<dependencies>
+
+	    <dependency>
+            <groupId>org.bitbucket.unimedgf</groupId>
+            <artifactId>evoluum-cache</artifactId>
+            <version>v1.1.0-3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>2.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-json</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--
+          Caso o MS NÃO utiliza database, descomentar o spring-data-jpa + hibernate-core e
+          comentar/remover spring-boot-starter-data-jpa
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+        </dependency>
+
+        <!--<dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>-->
+
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>co.elastic.apm</groupId>
+            <artifactId>apm-agent-api</artifactId>
+            <version>${co.elastic.apm.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.1</version>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.h2database</groupId>-->
+<!--            <artifactId>h2</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
+
+        <!-- test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-mock</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-httpclient</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-jackson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.openfeign</groupId>
+            <artifactId>feign-gson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.7.0</version>
+        </dependency>
 	</dependencies>
 
+	<repositories>
+	   <repository>
+		 <id>jitpack.io</id>
+		 <url>https://jitpack.io</url>
+	   </repository>
+	</repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
+		 <resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+        <plugins>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.eclipse.jkube</groupId>
+                <artifactId>kubernetes-maven-plugin</artifactId>
+                <version>${jkube.version}</version>
+                <configuration>
+                    <profile>ns</profile>
+                    <verbose>true</verbose>
+                    <images>
+                        <image>
+                            <name>gcr.io/${project.id-gke}/${project.artifactId}:${git.commit.id.describe.withoutdirty}</name>
+                            <build>
+                                <tags>
+                                    <tag>latest</tag>
+                                    <tag>${git.commit.id.describe.withoutdirty}</tag>
+                                </tags>
+                                <dockerFile>Dockerfile</dockerFile>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>${pl.project13.maven.version}</version>
+                <configuration>
+                    <offline>true</offline>
+                    <gitDescribe>
+                        <always>true</always>
+                        <dirty>-dirty</dirty>
+                    </gitDescribe>
+
+                    <replacementProperties>
+                        <replacementProperty>
+                            <property>git.commit.id.describe</property>
+                            <propertyOutputSuffix>withoutdirty</propertyOutputSuffix>
+                            <token>^(.*?)(-dirty)?$</token>
+                            <value>$1</value>
+                        </replacementProperty>
+                    </replacementProperties>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>get-the-git-infos</id>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${org.sonarsource.scanner.maven.version}</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${org.jacoco.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <excludes>
+                        <exclude>**/Application.class</exclude>
+                        <exclude>**/config/**.class</exclude>
+                        <exclude>**/dto/**.class</exclude>
+                        <exclude>**/vo/**.class</exclude>
+                        <exclude>**/model/**.class</exclude>
+                        <exclude>**/domain/**.class</exclude>
+                        <exclude>**/enums/**.class</exclude>
+                        <exclude>**/exception/**.class</exclude>
+                        <exclude>**/constant/**.class</exclude>
+                        <exclude>**/repository/**.class</exclude>
+                        <exclude>**/factory/**.class</exclude>
+                        <exclude>**/kafkalistener/**.class</exclude>
+                        <exclude>**/kafka/**.class</exclude>
+                        <exclude>**/http/**.class</exclude>
+                        <exclude>**/helper/KafkaHelper.class</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
 	</build>
 
 </project>
