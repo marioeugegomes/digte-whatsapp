@@ -1,0 +1,28 @@
+package com.br.unimedflorianopolis.arquitetura.config;
+
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Configuration;
+
+import static com.br.unimedflorianopolis.arquitetura.util.constant.ApplicationConstant.PKG_BASE;
+
+@Configuration
+@Aspect
+public class InterceptorLoggerConfiguration {
+
+    private Logger log = LoggerFactory.getLogger(InterceptorLoggerConfiguration.class);
+
+    @Before("execution(public * " + PKG_BASE + "..*(..))")
+    public void logBeforeRestCall(JoinPoint pjp) {
+        log.trace("InterceptorLoggerConfiguration: Executando o método: {}", pjp);
+    }
+
+    @After("execution(public * " + PKG_BASE + "..*(..))")
+    public void logAfterRestCall(JoinPoint pjp) {
+        log.trace("InterceptorLoggerConfiguration: Saindo do método: {} ", pjp);
+    }
+}

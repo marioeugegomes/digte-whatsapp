@@ -1,13 +1,14 @@
 package com.br.unimedflorianopolis.arquitetura;
 
-import co.elastic.apm.api.ElasticApm;
-import com.br.evoluum.cache.EnabledEvoluumCache;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+import com.br.evoluum.cache.EnabledEvoluumCache;
+
+import co.elastic.apm.api.ElasticApm;
 
 @EnableAspectJAutoProxy
 @SpringBootApplication
