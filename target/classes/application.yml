@@ -43,7 +43,7 @@ spring:
 server:
   config:
     branch: develop
-  port: 8106
+  port: 8080
 
 service:
   telemedicine:
@@ -86,3 +86,5 @@ management:
     export:
       prometheus:
         enabled: true
+
+openapi: 3.0.3

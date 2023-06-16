@@ -10,14 +10,14 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.br.unimedflorianopolis.arquitetura</groupId>
+	<groupId>com.br.unimedflorianopolis.treinamento</groupId>
 	<artifactId>springbootapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>arquitetura-starter-ugf</name>
-	<description>description-project</description>
+	<name>treinamento-ugf</name>
+	<description>Sistema de treinamento UGF</description>
 
 	<properties>
-		<start-class>com.br.unimedflorianopolis.arquitetura.Application</start-class>
+		<start-class>com.br.unimedflorianopolis.treinamento.Application</start-class>
 		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.SR4</spring-cloud.version>
         <jkube.version>1.1.0</jkube.version>
@@ -254,12 +254,6 @@
             <version>0.7.0</version>
         </dependency>
 
-       <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
@@ -301,6 +295,23 @@
 			</resource>
 		</resources>
         <plugins>
+
+            <plugin>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-maven-plugin</artifactId>
+                <version>0.2</version>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <outputFileName>${project.name}.json</outputFileName>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
