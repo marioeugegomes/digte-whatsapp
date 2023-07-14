@@ -20,6 +20,7 @@ import com.br.unimedflorianopolis.treinamento.exception.UnauthorizedException;
 import com.br.unimedflorianopolis.treinamento.exception.UnexpectedErrorException;
 import com.br.unimedflorianopolis.treinamento.exception.UnimedCoreNotFoundException;
 import com.br.unimedflorianopolis.treinamento.exception.UploadException;
+import com.br.unimedflorianopolis.treinamento.exception.ValidateException;
 
 
 public enum ErrorType {
@@ -120,6 +121,12 @@ public enum ErrorType {
         @Override
         public void exceptionsThrower() {
             throw new UploadException();
+        }
+    },
+    VALIDATE_ERROR("Ocorreu um erro ao executar a ação.") {
+        @Override
+        public void exceptionsThrower() {
+            throw new ValidateException();
         }
     },
     DOWNLOAD_ERROR("O documento não pode ser baixado.") {

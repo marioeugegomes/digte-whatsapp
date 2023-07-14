@@ -8,6 +8,7 @@ com/br/unimedflorianopolis/treinamento/gateway/repository/ApplicationRepository.
 com/br/unimedflorianopolis/treinamento/factory/HttpErrorResponseFactory.class
 com/br/unimedflorianopolis/treinamento/enums/ErrorType.class
 com/br/unimedflorianopolis/treinamento/enums/ErrorType$15.class
+com/br/unimedflorianopolis/treinamento/gateway/model/request/ApplicationRequest$ApplicationRequestBuilder.class
 com/br/unimedflorianopolis/treinamento/enums/ErrorType$18.class
 com/br/unimedflorianopolis/treinamento/exception/UploadException.class
 com/br/unimedflorianopolis/treinamento/Application.class
@@ -48,6 +49,7 @@ com/br/unimedflorianopolis/treinamento/enums/ErrorType$8.class
 com/br/unimedflorianopolis/treinamento/gateway/model/response/TopicErrorResponse.class
 com/br/unimedflorianopolis/treinamento/enums/ErrorType$5.class
 com/br/unimedflorianopolis/treinamento/enums/ErrorType$13.class
+com/br/unimedflorianopolis/treinamento/gateway/model/request/ApplicationRequest.class
 com/br/unimedflorianopolis/treinamento/gateway/model/response/HttpErrorResponse$HttpErrorResponseBuilder.class
 com/br/unimedflorianopolis/treinamento/enums/ErrorType$10.class
 com/br/unimedflorianopolis/treinamento/factory/ExceptionsFactory.class

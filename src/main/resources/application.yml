@@ -7,8 +7,8 @@ spring:
     add-properties: false
   security:
     user:
-      name: ${UGF_SRVC_USERNAME}
-      password: ${UGF_SRVC_PASSWORD}
+      name: teste
+      password: teste
 
   datasource:
     platform: postgres

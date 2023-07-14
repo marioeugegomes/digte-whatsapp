@@ -15,11 +15,17 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Data
 @Entity
+@Setter
 @Table(name = "application")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Application {
 
     @Id
