@@ -1,5 +1,6 @@
 com/br/unimedflorianopolis/treinamento/exception/TypeDocumentNotFoundException.class
 com/br/unimedflorianopolis/treinamento/util/constant/ApplicationConstant.class
+com/br/unimedflorianopolis/treinamento/enums/ErrorType$21.class
 com/br/unimedflorianopolis/treinamento/enums/ErrorType$11.class
 com/br/unimedflorianopolis/treinamento/enums/ErrorType$3.class
 com/br/unimedflorianopolis/treinamento/util/modelmapper/ModelMapperFactoryBean.class
@@ -69,5 +70,6 @@ com/br/unimedflorianopolis/treinamento/exception/handler/HttpExceptionHandler.cl
 com/br/unimedflorianopolis/treinamento/exception/UnexpectedErrorException.class
 com/br/unimedflorianopolis/treinamento/exception/MonthNotFoundException.class
 com/br/unimedflorianopolis/treinamento/gateway/model/response/TopicResponse$TopicResponseBuilder.class
+com/br/unimedflorianopolis/treinamento/exception/ValidateException.class
 com/br/unimedflorianopolis/treinamento/enums/ErrorType$6.class
 com/br/unimedflorianopolis/treinamento/enums/ErrorType$14.class

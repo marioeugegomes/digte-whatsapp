@@ -13,6 +13,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
@@ -34,11 +36,14 @@ public class Application {
     private UUID id;
 
     @NotEmpty
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
+    @NotNull(message = "Nome é obrigatório")
+    @Size(min=4,max=20,message="Nome precisa ter no minimo 4 caracteres e no maximo 20")
     private String name;
 
     @NotEmpty
-    @Column(name = "version", nullable = false)
+    @Column(name = "version")
+    @NotNull(message = "Versão é obrigatório")
     private String version;
 
     @CreationTimestamp

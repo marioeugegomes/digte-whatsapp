@@ -13,6 +13,7 @@
 /home/mario/Projects/UNIMED/ugf-arquitetura-poc-implement/src/main/java/com/br/unimedflorianopolis/treinamento/gateway/model/response/HttpErrorResponse.java
 /home/mario/Projects/UNIMED/ugf-arquitetura-poc-implement/src/main/java/com/br/unimedflorianopolis/treinamento/exception/ErrorCreateDocumentException.java
 /home/mario/Projects/UNIMED/ugf-arquitetura-poc-implement/src/main/java/com/br/unimedflorianopolis/treinamento/exception/DataBaseErrorException.java
+/home/mario/Projects/UNIMED/ugf-arquitetura-poc-implement/src/main/java/com/br/unimedflorianopolis/treinamento/exception/ValidateException.java
 /home/mario/Projects/UNIMED/ugf-arquitetura-poc-implement/src/main/java/com/br/unimedflorianopolis/treinamento/exception/DownloadFileException.java
 /home/mario/Projects/UNIMED/ugf-arquitetura-poc-implement/src/main/java/com/br/unimedflorianopolis/treinamento/config/MicrometerConfiguration.java
 /home/mario/Projects/UNIMED/ugf-arquitetura-poc-implement/src/main/java/com/br/unimedflorianopolis/treinamento/factory/HttpErrorResponseFactory.java

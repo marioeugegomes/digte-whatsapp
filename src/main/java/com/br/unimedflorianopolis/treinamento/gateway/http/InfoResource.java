@@ -4,6 +4,7 @@ package com.br.unimedflorianopolis.treinamento.gateway.http;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.br.unimedflorianopolis.treinamento.exception.ValidateException;
 import com.br.unimedflorianopolis.treinamento.gateway.domain.Application;
 import com.br.unimedflorianopolis.treinamento.gateway.model.request.ApplicationRequest;
 import com.br.unimedflorianopolis.treinamento.service.ApplicationInfoService;
 
 import lombok.AllArgsConstructor;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/application")

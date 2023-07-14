@@ -36,6 +36,7 @@ import com.br.unimedflorianopolis.treinamento.exception.TypeDocumentNotFoundExce
 import com.br.unimedflorianopolis.treinamento.exception.UnexpectedErrorException;
 import com.br.unimedflorianopolis.treinamento.exception.UnimedCoreNotFoundException;
 import com.br.unimedflorianopolis.treinamento.exception.UploadException;
+import com.br.unimedflorianopolis.treinamento.exception.ValidateException;
 import com.br.unimedflorianopolis.treinamento.factory.HttpErrorResponseFactory;
 import com.br.unimedflorianopolis.treinamento.gateway.model.response.HttpErrorResponse;
 
@@ -211,6 +212,16 @@ public class HttpExceptionHandler extends ResponseEntityExceptionHandler {
                 .status(HttpStatus.NOT_FOUND)
                 .body(HttpErrorResponseFactory.build(e.getErrorCode(), e.getMessage()));
     }
+
+    @ExceptionHandler(ValidateException.class)
+    public ResponseEntity<HttpErrorResponse> handleValidateException(ValidateException e, HttpServletRequest request) {
+        log.error(e.getMessage());
+
+        return ResponseEntity
+                .status(HttpStatus.UNPROCESSABLE_ENTITY)
+                .body(HttpErrorResponseFactory.build(e.getErrorCode(), e.getMessage()));
+    }
+
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e, HttpHeaders headers, HttpStatus status, WebRequest request) {
