@@ -1,0 +1,49 @@
+# This is an example Starter pipeline configuration
+# Use a skeleton to build, test and deploy using manual and parallel steps
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+
+image:
+  name: $OCI_CLI_REGION/grl3i5vgrvou/repodvds:latest
+  username: $USERNAME
+  password: $PASSWORD
+
+pipelines:
+  default:
+    - parallel:
+      - step:
+          name: 'Build Maven'
+          caches:
+            - maven
+          script: # Modify the commands below to build your repository.
+            - mvn clean && mvn install && mvn -B verify # -B batch mode makes Maven less verbose
+      - step:
+          name: 'Lint'
+          script:
+            - echo "Your linting goes here..."
+      - step:
+          name: 'Deployment OKE'
+          script:
+           - export OCI_CLI_TENANCY=$OCI_CLI_TENANCY
+           - export OCI_CLI_REGION=$OCI_CLI_REGION
+           - export OCI_CLI_USER=$OCI_CLI_USER
+           - export OCI_CLI_FINGERPRINT=$OCI_CLI_FINGERPRINT
+           - (umask  077 ; echo $OCI_CLI_KEY | base64 --decode > $HOME/.oci/oci_api_key.pem)
+           - export OCI_CLI_KEY_FILE=$HOME/.oci/oci_api_key.pem
+           - mkdir -p $HOME/.kube
+           - oci ce cluster create-kubeconfig --cluster-id $OCI_CLUSTER_ID --file $HOME/.kube/config --region $OCI_CLI_REGION --token-version 2.0.0
+           - export KUBECONFIG=$HOME/.kube/config
+           - kubectl get nodes
+
+    # The following deployment steps will be executed for each pipeline run. To configure your steps and conditionally deploy see https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/
+    - step:
+        name: 'Deployment to Staging'
+        deployment: staging
+        script:
+          - echo "Your deployment to staging script goes here..."
+    - step:
+        name: 'Deployment to Production'
+        deployment: production
+        trigger: 'manual'
+        script:
+          - echo "Your deployment to production script goes here..."
