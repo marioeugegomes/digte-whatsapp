@@ -1,7 +1,8 @@
-FROM unimedgf/microservice-base:java8
-COPY maven /opt/app/
-WORKDIR /opt/app
-
-ENTRYPOINT java $JAVA_OPTIONS -jar ./*.jar
+FROM adoptopenjdk/openjdk11:latest
+RUN addgroup -S spring && adduser -S spring -G spring
+USER spring:spring
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
 
 EXPOSE 8106
