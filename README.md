@@ -40,21 +40,3 @@ Este projeto está licenciado sob a [Licença XYZ](URL_DA_LICENÇA).
 Certifique-se de substituir <URL_DO_REPOSITÓRIO>, nome-do-projeto e URL_DA_LICENÇA pelas informações relevantes do seu projeto.
 
 Lembre-se de personalizar as instruções conforme necessário, dependendo das peculiaridades do seu projeto.
-
-
-### Desafio
-Cadastro de usuário
-
-1. Criar entidade do Usuario
-    - Nome
-    - e-mail
-    - Data de Nascimento
-    - 1 ou mais endereços sendo que 1 endereço é o default
-    - Esse usuário tem q ter ativacao de desativação lógica
-    - Ele esta ligado a um ou mais aplicações
-    - ele tem senha de acesso
-
-2. Listar esse usuario
-3. Alterar
-4. Deletar
-5. Logar sendo que usuario é o e-mail

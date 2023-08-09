@@ -10,14 +10,14 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.br.unimedflorianopolis.treinamento</groupId>
+	<groupId>com.br.digte.poc</groupId>
 	<artifactId>springbootapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>treinamento-ugf</name>
-	<description>Sistema de treinamento UGF</description>
+	<name>digte-poc</name>
+	<description>POC Digte</description>
 
 	<properties>
-		<start-class>com.br.unimedflorianopolis.treinamento.Application</start-class>
+		<start-class>com.br.digte.poc.Application</start-class>
 		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.SR4</spring-cloud.version>
         <jkube.version>1.1.0</jkube.version>
@@ -271,6 +271,12 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>3.0.0</version>
+        </dependency>
+
+         <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>7.51.0</version>
         </dependency>
 
 	</dependencies>

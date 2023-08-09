@@ -1,6 +1,6 @@
 spring:
   application:
-    name: arquitetura-starter-ugf
+    name: digte-poc
   profiles:
     active: dev
   devtools:

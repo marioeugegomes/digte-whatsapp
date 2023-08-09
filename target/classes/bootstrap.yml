@@ -1,7 +1,7 @@
 spring:
   application:
-    name: arquitetura-starter-ugf
+    name: digte-poc
   cloud:
     config:
-      uri: http://joaquina-ugf-server-config
+      uri: http://joaquina-poc-server-config
       label: '@server.config.branch@'
