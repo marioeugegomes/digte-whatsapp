@@ -19,11 +19,19 @@ pipeline:
             steps:
               - step:
                   identifier: echo
-                  name: echo
+                  name: Maven Build
                   spec:
-                    command: echo hello world
+                    shell: Sh
+                    command: mvn clear && mvn install
                   timeout: ""
                   type: Run
+              - step:
+                  type: Run
+                  name: Maven Package
+                  identifier: Maven_Package
+                  spec:
+                    shell: Sh
+                    command: mvn package
           platform:
             arch: Amd64
             os: Linux
