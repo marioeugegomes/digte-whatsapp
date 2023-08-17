@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_digte_whatsapp_1692283710975-pr-trigger-input-set
+  identifier: Build_digte_whatsapp_1692283710975prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_digte_whatsapp_1692283710975
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
